@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Generator</title>
+    <style>
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            background-color: black;
+        }
+
+        #otp{
+            color:red;
+            font-size: larger;
+            font-weight: 800;
+            font-family: helvetica;
+        }
+
+        main{
+            width:300px;
+            max-width: 70vw;
+            margin:0 auto;
+            border: 7px solid white;
+            padding:20px;
+            background-color: aliceblue;
+        }
+        p{
+            margin:10px 0 0 0 ;
+            text-align: center;
+        }
+        #digits{
+            margin: 10px 0;
+            padding: 5px;
+            border: 0;
+            outline: 2px solid black;
+        }
+
+        button{
+            all:unset;
+            padding:6px;
+            text-align: center;
+            background: gray;
+            border-radius: 4px;
+            font-family: helvetica;
+            color:white;
+            font-size: small;
+        }
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <form action="#">
+            <label for="digits">Enter digits:</label><br>
+            <input type="text" id="digits" name="digits">
+            <button class="submit" type="submit">Generate</button>
+        </form>
+        <p>Your OTP is <span id="otp">xxxxxx</span> </p>
+    </main>
+    
+    <script>
+
+function generate(digits){
+    let otp = '';
+
+    for (let i = 0; i < 6; i++){
+        otp += digits[Math.floor(Math.random() * 10)];  
+    }
+    console.log('otp generated is ' ,otp);
+
+    return otp;
+
+}
+
+document.querySelector('.submit').addEventListener('click', e => {
+    e.preventDefault();
+    let digits = document.querySelector('#digits').value;
+    generate(digits);
+    let text = document.querySelector('#otp');
+    text.textContent = generate(digits);
+})
+
+
+    </script>
+</body>
+</html>
